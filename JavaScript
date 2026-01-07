@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+
+const AmazonClone = () => {
+  const [cartCount, setCartCount] = useState(0);
+
+  const products = [
+    { id: 1, name: "Premium Wireless Headphones", price: 299, rating: "★★★★☆", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" },
+    { id: 2, name: "Mechanical Gaming Keyboard", price: 89, rating: "★★★★★", img: "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=300" },
+    { id: 3, name: "Smart Home Speaker", price: 120, rating: "★★★★☆", img: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?w=300" },
+    { id: 4, name: "Ergonomic Office Chair", price: 450, rating: "★★★★★", img: "https://images.unsplash.com/photo-1505797149-43b0000ee79e?w=300" },
+  ];
+
+  return (
+    <div className="bg-gray-100 min-h-screen font-sans">
+      {/* Navigation Bar */}
+      <nav className="bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
+        <div className="text-2xl font-bold text-orange-400">StoreLogo</div>
+        <div className="flex-1 mx-10">
+          <input type="text" placeholder="Search products..." className="w-full p-2 rounded text-black outline-none" />
+        </div>
+        <div className="flex gap-6 items-center">
+          <div className="cursor-pointer">Hello, Sign in</div>
+          <div className="relative cursor-pointer">
+            <span className="text-2xl">🛒</span>
+            <span className="absolute -top-2 -right-2 bg-orange-500 rounded-full px-2 text-xs">{cartCount}</span>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <div className="bg-blue-900 text-white p-12 text-center shadow-inner">
+        <h1 className="text-4xl font-bold mb-2">Upgrade Your Tech Setup</h1>
+        <p className="text-lg opacity-90">Exclusive deals on premium electronics this week only.</p>
+      </div>
+
+      {/* Product Grid */}
+      <main className="max-w-7xl mx-auto p-6 -mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.map((item) => (
+            <div key={item.id} className="bg-white p-4 shadow-md rounded flex flex-col hover:scale-105 transition-transform">
+              <img src={item.img} alt={item.name} className="h-48 w-full object-cover mb-4" />
+              <h3 className="font-semibold text-lg mb-1">{item.name}</h3>
+              <div className="text-orange-500 text-sm mb-2">{item.rating}</div>
+              <div className="text-xl font-bold mb-4">${item.price}</div>
+              <button 
+                onClick={() => setCartCount(cartCount + 1)}
+                className="mt-auto bg-yellow-400 hover:bg-yellow-500 text-black py-2 rounded font-medium transition"
+              >
+                Add to Cart
+              </button>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default AmazonClone;
